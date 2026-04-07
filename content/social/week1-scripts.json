@@ -1,0 +1,119 @@
+{
+  "week": 1,
+  "platform": ["TikTok", "Instagram Reels"],
+  "strategy": "Curiosity → Emotion → Click → Site converts",
+  "days": [
+    {
+      "day": 1,
+      "theme": "AWARENESS",
+      "scripts": [
+        {
+          "hook": "You're not lazy. You're overstimulated.",
+          "identity": "For the man who's been running on empty and doesn't know why.",
+          "shift": "Your baseline got buried. Not lost. Buried.",
+          "cta": "Return to it. Link in bio.",
+          "duration": "8s"
+        },
+        {
+          "hook": "Modern life made you weak without you noticing.",
+          "identity": "No one told you this was happening.",
+          "shift": "Noise does that. Strip it away and see what's left.",
+          "cta": "Primal Source. Link in bio.",
+          "duration": "9s"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "theme": "RELATABILITY",
+      "scripts": [
+        {
+          "hook": "Why do you feel off even when everything is 'fine'?",
+          "identity": "Job's good. Relationships okay. But something's missing.",
+          "shift": "That's disconnection. Not depression. Not failure.",
+          "cta": "There's a name for it. Link in bio.",
+          "duration": "10s"
+        },
+        {
+          "hook": "You wake up tired. You scroll. You repeat.",
+          "identity": "That loop isn't rest. It's avoidance.",
+          "shift": "Breaking it starts with one different choice.",
+          "cta": "Make it. Link in bio.",
+          "duration": "8s"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "theme": "AUTHORITY",
+      "scripts": [
+        {
+          "hook": "I built this because nothing else worked.",
+          "identity": "Not for everyone. For the ones still looking.",
+          "shift": "This is not a product. It's a return.",
+          "cta": "Primal Source. Link in bio.",
+          "duration": "9s"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "theme": "CONTRAST",
+      "scripts": [
+        {
+          "hook": "City version of you vs real version of you.",
+          "identity": "One is performance. One is truth.",
+          "shift": "Most men never meet the second one.",
+          "cta": "Don't be most men. Link in bio.",
+          "duration": "8s"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "theme": "CURIOSITY",
+      "scripts": [
+        {
+          "hook": "There's a reason you feel this way. No one talks about it.",
+          "identity": "It's not weakness. It's disconnection from your source.",
+          "shift": "Once you see it, you can't unsee it.",
+          "cta": "Link in bio.",
+          "duration": "10s"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "theme": "SOFT CONVERSION",
+      "scripts": [
+        {
+          "hook": "This isn't for everyone.",
+          "identity": "If you scrolled this far, it might be for you.",
+          "shift": "The men who get it — get it immediately.",
+          "cta": "Primal Source. Link in bio.",
+          "duration": "8s"
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "theme": "PUSH",
+      "scripts": [
+        {
+          "hook": "You've waited long enough.",
+          "identity": "You've known something needed to change.",
+          "shift": "This is the signal you were looking for.",
+          "cta": "Return to your origin. Link in bio.",
+          "duration": "9s"
+        }
+      ]
+    }
+  ],
+  "visual_notes": {
+    "lighting": "Dark, cinematic",
+    "movement": "Slow motion",
+    "text": "Minimal overlay — one line at a time",
+    "tone": "Raw, honest, quiet authority",
+    "avoid": "Hype, fast cuts, bright colors, music drops"
+  }
+}

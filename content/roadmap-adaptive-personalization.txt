@@ -1,0 +1,148 @@
+ADAPTIVE AI PERSONALIZATION SYSTEM — NEXT.JS + AGENTS
+
+PURPOSE:
+Move from segment-based content → fully adaptive per-user experience.
+
+System dynamically adjusts content based on:
+- Behavior
+- Engagement
+- Interaction patterns
+
+-----------------------------------
+SECTION 1 — USER PROFILE MODEL
+-----------------------------------
+
+Create: /lib/userProfile.ts
+
+export function getUserProfile() {
+  const profile = JSON.parse(localStorage.getItem("user_profile") || "{}");
+
+  return {
+    visits: profile.visits || 0,
+    clicks: profile.clicks || 0,
+    scrollDepth: profile.scrollDepth || 0,
+    timeOnSite: profile.timeOnSite || 0,
+    intentScore: profile.intentScore || 0
+  };
+}
+
+export function updateUserProfile(update) {
+  const current = getUserProfile();
+  const updated = { ...current, ...update };
+
+  localStorage.setItem("user_profile", JSON.stringify(updated));
+}
+
+-----------------------------------
+SECTION 2 — INTENT SCORING SYSTEM
+-----------------------------------
+
+Create dynamic score:
+
+export function calculateIntent(profile) {
+  let score = 0;
+
+  if (profile.visits > 1) score += 2;
+  if (profile.clicks > 3) score += 3;
+  if (profile.scrollDepth > 70) score += 2;
+  if (profile.timeOnSite > 30) score += 3;
+
+  return score;
+}
+
+-----------------------------------
+SECTION 3 — CONTENT VARIANTS
+-----------------------------------
+
+Agents generate multiple variants:
+
+/content/homepage_variants.json
+
+{
+  "low_intent": {...},
+  "mid_intent": {...},
+  "high_intent": {...}
+}
+
+-----------------------------------
+SECTION 4 — ADAPTIVE LOADER
+-----------------------------------
+
+Create: /lib/adaptiveContent.ts
+
+import variants from "../content/homepage_variants.json";
+
+export function getAdaptiveContent(score) {
+  if (score >= 7) return variants.high_intent;
+  if (score >= 4) return variants.mid_intent;
+  return variants.low_intent;
+}
+
+-----------------------------------
+SECTION 5 — REAL-TIME TRACKING
+-----------------------------------
+
+Track behavior:
+
+window.addEventListener("scroll", () => {
+  const depth = (window.scrollY / document.body.scrollHeight) * 100;
+  updateUserProfile({ scrollDepth: depth });
+});
+
+-----------------------------------
+SECTION 6 — NEXT.JS IMPLEMENTATION
+-----------------------------------
+
+"use client";
+
+import { useEffect, useState } from "react";
+import { getUserProfile, updateUserProfile } from "@/lib/userProfile";
+import { calculateIntent } from "@/lib/intent";
+import { getAdaptiveContent } from "@/lib/adaptiveContent";
+
+export default function Home() {
+  const [content, setContent] = useState(null);
+
+  useEffect(() => {
+    const profile = getUserProfile();
+    const score = calculateIntent(profile);
+    const adaptive = getAdaptiveContent(score);
+
+    setContent(adaptive);
+
+    updateUserProfile({
+      visits: profile.visits + 1
+    });
+  }, []);
+
+  if (!content) return null;
+
+  return <h1>{content.hero.headline}</h1>;
+}
+
+-----------------------------------
+SECTION 7 — AGENT FEEDBACK LOOP
+-----------------------------------
+
+Agents receive:
+
+- user behavior data
+- winning variants
+- engagement metrics
+
+Agents must:
+- generate better variants
+- refine targeting
+- improve conversion
+
+-----------------------------------
+SECTION 8 — FINAL RESULT
+-----------------------------------
+
+System behavior:
+
+User visits → behavior tracked → intent calculated → content adapts → experience evolves
+
+Each user gets a unique journey.
+
+END FILE

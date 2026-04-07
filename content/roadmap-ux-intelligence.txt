@@ -1,0 +1,100 @@
+OPENCLAW BOT UPGRADE — UX INTELLIGENCE LAYER (1–5)
+
+PURPOSE:
+Enhance adaptive frontend system with deeper behavioral intelligence, smoother UX, and feedback-driven optimization.
+
+-----------------------------------
+SECTION 1 — TRANSITION POLISH
+-----------------------------------
+
+Goal:
+Make content changes feel intentional and smooth.
+
+Rules:
+- Add 1–2 second delay before switching content
+- Animate opacity + slight blur instead of instant swap
+- Avoid abrupt UI changes
+
+Example:
+Use motion transitions (fade + blur) for headline updates.
+
+-----------------------------------
+SECTION 2 — MOMENT-BASED TRIGGERS
+-----------------------------------
+
+Detect hesitation, not just thresholds.
+
+Conditions:
+- User stays on section > 8 seconds
+- No click or interaction
+
+Trigger:
+"needs_reassurance"
+
+Action:
+Show supportive copy:
+"You’re not the only one who felt this."
+
+-----------------------------------
+SECTION 3 — USER TYPE REFINEMENT
+-----------------------------------
+
+Replace single "high intent" with:
+
+- Explorer:
+  Scrolls but no clicks
+  → Show inspiration messaging
+
+- Considerer:
+  Clicks but hesitates
+  → Show proof, reassurance
+
+- Buyer:
+  Multiple strong signals
+  → Show urgency + CTA
+
+-----------------------------------
+SECTION 4 — MEMORY PERSISTENCE
+-----------------------------------
+
+Upgrade from session memory → persistent identity
+
+Implementation:
+- Store hashed user ID in localStorage
+- Persist behavior across visits
+
+Store:
+/memory/users/{id}.json
+
+Track:
+- behavior patterns
+- engagement signals
+- conversion moments
+
+-----------------------------------
+SECTION 5 — AGENT FEEDBACK LOOP
+-----------------------------------
+
+Feed real data back into agents.
+
+Example input:
+{
+  "winning_headline": "Rare Sourced. Limited Run.",
+  "user_type": "buyer",
+  "engagement": "high"
+}
+
+Agent task:
+Generate improved variations based on performance data.
+
+Rule:
+Always optimize from real results, not assumptions.
+
+-----------------------------------
+FINAL OBJECTIVE
+-----------------------------------
+
+Transform system from:
+Adaptive → Intelligent → Learning
+
+END FILE
