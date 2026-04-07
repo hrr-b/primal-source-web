@@ -1,0 +1,22 @@
+{
+  "hero": {
+    "headline": "Return To Your Origin",
+    "sub": "Rare sourced apparel for men seeking authenticity and purpose",
+    "cta_primary": "Shop Now",
+    "cta_secondary": "Our Philosophy"
+  },
+  "story": [
+    "Built for men who refuse to be ordinary.",
+    "Every piece sourced with intention.",
+    "This is not fashion. This is identity."
+  ],
+  "philosophy": {
+    "headline": "The Origin",
+    "body": "Primal Source was built from suffering. From the quiet moments when giving up felt easier than going on. We wear what we believe — that within every man is a primal source of strength waiting to be returned to."
+  },
+  "email": {
+    "headline": "Join The Primal Circle",
+    "sub": "First access to drops. No noise.",
+    "cta": "Enter"
+  }
+}
