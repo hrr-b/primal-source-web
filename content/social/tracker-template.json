@@ -1,0 +1,59 @@
+{
+  "instructions": {
+    "purpose": "Track real-world performance and optimize only from winners.",
+    "rules": [
+      "Do not create random new ideas. Multiply winners.",
+      "Track saves over likes — saves are stronger signal.",
+      "Website copy should echo the best video hooks.",
+      "If a post has low saves, no comments, and no replays, drop the idea."
+    ]
+  },
+  "fields": [
+    "date",
+    "platform",
+    "video_title",
+    "hook",
+    "theme",
+    "cta",
+    "saves",
+    "comments",
+    "clicks",
+    "replays",
+    "repeat_visitors",
+    "winner",
+    "notes"
+  ],
+  "hook_types": [
+    "recognition",
+    "interruption",
+    "identity",
+    "emotional_trigger"
+  ],
+  "cta_rotation": [
+    "Don't leave this time",
+    "You already know. Start now",
+    "Return to your origin",
+    "You came back for a reason"
+  ],
+  "success_signals": [
+    "this hit comments",
+    "increasing saves",
+    "repeat visitors rising",
+    "clicks increasing"
+  ],
+  "example_entry": {
+    "date": "2026-04-07",
+    "platform": "TikTok",
+    "video_title": "Day 1 Awareness #1",
+    "hook": "You're not lazy. You're overstimulated.",
+    "theme": "awareness",
+    "cta": "Return to your origin",
+    "saves": 0,
+    "comments": 0,
+    "clicks": 0,
+    "replays": 0,
+    "repeat_visitors": 0,
+    "winner": false,
+    "notes": "First post"
+  }
+}
