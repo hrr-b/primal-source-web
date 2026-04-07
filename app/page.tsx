@@ -84,10 +84,18 @@ export default function HomePage() {
     return () => cleanup?.()
   }, [content]) // reinit when content changes
 
-  const handleEmailSubmit = (e: React.FormEvent) => {
+  const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    trackHighIntent() // email submit = high intent
-    if (email) setSubmitted(true)
+    trackHighIntent()
+    if (!email) return
+    try {
+      await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+    } catch {}
+    setSubmitted(true)
   }
 
   const storyLines = content?.story || ['Built for men who refuse to be ordinary.', 'Every piece sourced with intention.', 'This is not fashion. This is identity.']

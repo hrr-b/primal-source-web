@@ -77,7 +77,18 @@ export default function StartPage() {
                 Join the Primal Circle — first access to drops and content.
               </p>
               <form
-                onSubmit={(e) => { e.preventDefault(); if (email) setSubmitted(true) }}
+                onSubmit={async (e) => {
+      e.preventDefault()
+      if (!email) return
+      try {
+        await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        })
+      } catch {}
+      setSubmitted(true)
+    }}
                 className="flex flex-col sm:flex-row gap-3"
               >
                 <input
