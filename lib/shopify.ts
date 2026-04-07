@@ -1,10 +1,24 @@
-export const getProducts = async () => [
-  { id: '1', slug: 'origin-tee', name: 'Origin Tee', price: 65, description: 'Built for presence.' },
-  { id: '2', slug: 'primal-hoodie', name: 'Primal Hoodie', price: 120, description: 'Wear your conviction.' },
-  { id: '3', slug: 'source-cap', name: 'Source Cap', price: 45, description: 'Carry the origin.' },
-]
+import productsData from '@/content/products.json'
 
-export const getProduct = async (slug: string) => {
+export type Product = {
+  id: string
+  slug: string
+  name: string
+  price: number
+  description: string
+  identity?: string
+  statement?: string
+  meaning?: string
+  feel?: string
+  close?: string
+  benefits?: string[]
+}
+
+export const getProducts = async (): Promise<Product[]> => {
+  return productsData.products
+}
+
+export const getProduct = async (slug: string): Promise<Product | null> => {
   const products = await getProducts()
   return products.find(p => p.slug === slug) || null
 }

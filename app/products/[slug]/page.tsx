@@ -1,4 +1,4 @@
-import { getProduct, getProducts } from '@/lib/shopify'
+import { getProduct } from '@/lib/shopify'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
@@ -36,7 +36,7 @@ export default async function ProductPage({
           {/* Image placeholder */}
           <div className="aspect-square bg-[#1a1a1a] flex items-center justify-center border border-white/5">
             <span className="text-white/10 text-sm tracking-widest uppercase">
-              Product Image
+              {product.name}
             </span>
           </div>
 
@@ -49,11 +49,51 @@ export default async function ProductPage({
               <h1 className="font-['Bebas_Neue'] text-6xl tracking-wider text-[#f5f0e8] mb-4">
                 {product.name}
               </h1>
-              <div className="w-16 h-px bg-[#8B6914] mb-6" />
-              <p className="text-[#f5f0e8]/60 text-lg leading-8 tracking-wide">
-                {product.description}
-              </p>
+              <div className="w-16 h-px bg-[#8B6914] mb-8" />
+
+              {/* Identity-driven description */}
+              <div className="flex flex-col gap-5">
+                {product.identity && (
+                  <p className="text-[#f5f0e8] text-lg leading-8 tracking-wide font-medium">
+                    {product.identity}
+                  </p>
+                )}
+                {product.statement && (
+                  <p className="text-[#f5f0e8]/60 text-sm leading-7 tracking-wide">
+                    {product.statement}
+                  </p>
+                )}
+                {product.meaning && (
+                  <p className="text-[#c4a882]/80 text-sm leading-7 tracking-wide italic">
+                    {product.meaning}
+                  </p>
+                )}
+                {product.feel && (
+                  <p className="text-[#f5f0e8]/50 text-sm leading-7 tracking-wide">
+                    {product.feel}
+                  </p>
+                )}
+                {product.close && (
+                  <p className="text-[#8B6914] text-xs tracking-[0.2em] uppercase mt-2">
+                    {product.close}
+                  </p>
+                )}
+              </div>
             </div>
+
+            {/* Benefits */}
+            {product.benefits && (
+              <div className="flex gap-4 flex-wrap">
+                {product.benefits.map((b) => (
+                  <span
+                    key={b}
+                    className="border border-white/10 text-white/40 text-xs tracking-[0.2em] uppercase px-4 py-2"
+                  >
+                    {b}
+                  </span>
+                ))}
+              </div>
+            )}
 
             <div className="flex items-baseline gap-4">
               <span className="font-['Bebas_Neue'] text-4xl text-[#c4a882] tracking-wider">
@@ -62,7 +102,7 @@ export default async function ProductPage({
               <span className="text-white/30 text-xs tracking-widest uppercase">USD</span>
             </div>
 
-            {/* Size selector placeholder */}
+            {/* Size selector */}
             <div className="flex flex-col gap-3">
               <p className="text-white/40 text-xs tracking-[0.2em] uppercase">Size</p>
               <div className="flex gap-3">
