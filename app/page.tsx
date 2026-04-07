@@ -1,29 +1,59 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import GrainOverlay from '@/components/GrainOverlay'
 import ProductCard from '@/components/ProductCard'
 import AnimatedText from '@/components/AnimatedText'
 import { getProducts } from '@/lib/shopify'
-import homepageContent from '@/content/homepage.json'
+import { getUserType, trackHighIntent } from '@/lib/session'
+import { loadContent, type DynamicContent } from '@/lib/loadContent'
 import emailContent from '@/content/email.json'
-
-const storyLines = homepageContent.story
 
 export default function HomePage() {
   const storyRef = useRef<HTMLDivElement>(null)
   const [products, setProducts] = useState<Awaited<ReturnType<typeof getProducts>>>([])
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  const [content, setContent] = useState<DynamicContent | null>(null)
 
+  // Load dynamic content based on user type
+  useEffect(() => {
+    const type = getUserType()
+    loadContent(type).then(setContent)
+  }, [])
+
+  // Load products
   useEffect(() => {
     getProducts().then(setProducts)
   }, [])
 
+  // High intent tracking: scroll depth + time on site
+  useEffect(() => {
+    let timeTimer: ReturnType<typeof setTimeout>
+
+    const handleScroll = () => {
+      const scrollDepth = window.scrollY / (document.body.scrollHeight - window.innerHeight)
+      if (scrollDepth > 0.7) {
+        trackHighIntent()
+      }
+    }
+
+    // 30s on site = high intent
+    timeTimer = setTimeout(() => {
+      trackHighIntent()
+    }, 30000)
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      clearTimeout(timeTimer)
+    }
+  }, [])
+
+  // GSAP scroll story
   useEffect(() => {
     if (!storyRef.current) return
-
     let cleanup: (() => void) | undefined
 
     const initGSAP = async () => {
@@ -35,7 +65,6 @@ export default function HomePage() {
       if (!elements) return
 
       const triggers: ReturnType<typeof ScrollTrigger.create>[] = []
-
       elements.forEach((el) => {
         gsap.set(el, { opacity: 0, y: 60 })
         const trigger = ScrollTrigger.create({
@@ -48,19 +77,21 @@ export default function HomePage() {
         triggers.push(trigger)
       })
 
-      cleanup = () => {
-        triggers.forEach(t => t.kill())
-      }
+      cleanup = () => triggers.forEach(t => t.kill())
     }
 
     initGSAP()
     return () => cleanup?.()
-  }, [])
+  }, [content]) // reinit when content changes
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    trackHighIntent() // email submit = high intent
     if (email) setSubmitted(true)
   }
+
+  const storyLines = content?.story || ['Built for men who refuse to be ordinary.', 'Every piece sourced with intention.', 'This is not fashion. This is identity.']
+  const hero = content?.hero
 
   return (
     <>
@@ -68,58 +99,64 @@ export default function HomePage() {
       <section className="relative min-h-screen flex flex-col items-center justify-center bg-[#0a0a0a] overflow-hidden">
         <GrainOverlay />
 
-        <motion.div
-          className="relative z-20 text-center px-6 max-w-5xl mx-auto"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: 'easeOut' }}
-        >
-          <motion.p
-            className="text-[#8B6914] text-xs tracking-[0.4em] uppercase mb-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 1 }}
-          >
-            Primal Source
-          </motion.p>
-
-          <h1
-            className="font-['Bebas_Neue'] text-[clamp(4rem,12vw,10rem)] leading-none tracking-wider text-[#f5f0e8] mb-8"
-          >
-            {homepageContent.hero.headline.split(' TO').map((part, i) => i === 0 ? <span key={i}>{part} TO<br /></span> : <span key={i}>{part}</span>)}
-          </h1>
-
-          <motion.p
-            className="text-[#f5f0e8]/50 text-lg tracking-widest max-w-md mx-auto mb-12"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 1 }}
-          >
-            {homepageContent.hero.sub}
-          </motion.p>
-
-          <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.0, duration: 0.8 }}
-          >
-            <a
-              href="/products"
-              className="bg-[#8B6914] hover:bg-[#a07a1e] text-[#f5f0e8] text-xs tracking-[0.3em] uppercase py-4 px-10 transition-colors duration-300"
+        <AnimatePresence mode="wait">
+          {hero && (
+            <motion.div
+              key={hero.headline}
+              className="relative z-20 text-center px-6 max-w-5xl mx-auto"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 1.2, ease: 'easeOut' }}
             >
-              Shop Now
-            </a>
-            <a
-              href="/philosophy"
-              className="border border-[#f5f0e8]/20 hover:border-[#f5f0e8]/60 text-[#f5f0e8]/70 hover:text-[#f5f0e8] text-xs tracking-[0.3em] uppercase py-4 px-10 transition-all duration-300"
-            >
-              Our Philosophy
-            </a>
-          </motion.div>
-        </motion.div>
+              <motion.p
+                className="text-[#8B6914] text-xs tracking-[0.4em] uppercase mb-6"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4, duration: 1 }}
+              >
+                Primal Source
+              </motion.p>
 
-        {/* Decorative bottom line */}
+              <h1 className="font-['Bebas_Neue'] text-[clamp(4rem,12vw,10rem)] leading-none tracking-wider text-[#f5f0e8] mb-8">
+                {hero.headline}
+              </h1>
+
+              <motion.p
+                className="text-[#f5f0e8]/50 text-lg tracking-widest max-w-md mx-auto mb-12"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8, duration: 1 }}
+              >
+                {hero.sub}
+              </motion.p>
+
+              <motion.div
+                className="flex flex-col sm:flex-row items-center justify-center gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.0, duration: 0.8 }}
+              >
+                <a
+                  href="/products"
+                  onClick={() => trackHighIntent()}
+                  className="bg-[#8B6914] hover:bg-[#a07a1e] text-[#f5f0e8] text-xs tracking-[0.3em] uppercase py-4 px-10 transition-colors duration-300"
+                >
+                  {hero.cta_primary}
+                </a>
+                {hero.cta_secondary && (
+                  <a
+                    href="/philosophy"
+                    className="border border-[#f5f0e8]/20 hover:border-[#f5f0e8]/60 text-[#f5f0e8]/70 hover:text-[#f5f0e8] text-xs tracking-[0.3em] uppercase py-4 px-10 transition-all duration-300"
+                  >
+                    {hero.cta_secondary}
+                  </a>
+                )}
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         <motion.div
           className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
           initial={{ opacity: 0 }}
@@ -132,16 +169,11 @@ export default function HomePage() {
       </section>
 
       {/* SCROLL STORY */}
-      <section
-        ref={storyRef}
-        className="bg-[#0a0a0a] py-32 px-6"
-      >
+      <section ref={storyRef} className="bg-[#0a0a0a] py-32 px-6">
         <div className="max-w-3xl mx-auto flex flex-col gap-32">
           {storyLines.map((line, i) => (
             <div key={i} className="story-line text-center">
-              <p
-                className="font-['Bebas_Neue'] text-[clamp(2rem,5vw,4rem)] text-[#f5f0e8]/80 tracking-wide leading-tight"
-              >
+              <p className="font-['Bebas_Neue'] text-[clamp(2rem,5vw,4rem)] text-[#f5f0e8]/80 tracking-wide leading-tight">
                 {line}
               </p>
               <div className="mt-6 mx-auto w-12 h-px bg-[#8B6914]/40" />
@@ -159,7 +191,6 @@ export default function HomePage() {
               THE COLLECTION
             </h2>
           </AnimatedText>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((product) => (
               <AnimatedText key={product.id} delay={0.1 * parseInt(product.id)}>
@@ -174,13 +205,20 @@ export default function HomePage() {
       <section className="bg-[#1a1a1a] py-32 px-6 border-t border-white/5">
         <div className="max-w-2xl mx-auto text-center">
           <AnimatedText>
-            <blockquote className="italic text-[#f5f0e8]/60 text-xl leading-relaxed tracking-wide">
-              &ldquo;Suffering is not a punishment. It is the forge.<br />
-              Strength is not given. It is extracted — from discipline,<br />
-              from darkness, from the refusal to stop.<br />
-              <br />
-              Every garment we make carries that conviction.&rdquo;
-            </blockquote>
+            {content?.philosophy ? (
+              <>
+                <h3 className="font-['Bebas_Neue'] text-3xl text-[#8B6914] tracking-widest mb-8 uppercase">
+                  {content.philosophy.headline}
+                </h3>
+                <p className="italic text-[#f5f0e8]/60 text-xl leading-relaxed tracking-wide">
+                  &ldquo;{content.philosophy.body}&rdquo;
+                </p>
+              </>
+            ) : (
+              <blockquote className="italic text-[#f5f0e8]/60 text-xl leading-relaxed tracking-wide">
+                &ldquo;Suffering is not a punishment. It is the forge. Strength is not given. It is extracted — from discipline, from darkness, from the refusal to stop. Every garment we make carries that conviction.&rdquo;
+              </blockquote>
+            )}
             <div className="mt-8 text-[#8B6914] text-xs tracking-[0.3em] uppercase">
               — Primal Source
             </div>
@@ -194,12 +232,11 @@ export default function HomePage() {
           <AnimatedText>
             <p className="text-[#8B6914] text-xs tracking-[0.4em] uppercase mb-4">Community</p>
             <h2 className="font-['Bebas_Neue'] text-4xl tracking-wider text-[#f5f0e8] mb-4">
-              {emailContent.capture.headline}
+              {content?.email?.headline || emailContent.capture.headline}
             </h2>
             <p className="text-white/40 text-sm tracking-wide mb-10">
-              {emailContent.capture.sub}
+              {content?.email?.sub || emailContent.capture.sub}
             </p>
-
             {submitted ? (
               <p className="text-[#c4a882] tracking-widest text-sm uppercase">
                 You&apos;re in. Welcome to the circle.
@@ -218,7 +255,7 @@ export default function HomePage() {
                   type="submit"
                   className="bg-[#8B6914] hover:bg-[#a07a1e] text-[#f5f0e8] text-xs tracking-[0.2em] uppercase px-8 py-4 transition-colors duration-200 whitespace-nowrap"
                 >
-                  Join
+                  {content?.email?.cta || emailContent.capture.cta}
                 </button>
               </form>
             )}

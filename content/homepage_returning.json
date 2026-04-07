@@ -1,0 +1,22 @@
+{
+  "hero": {
+    "headline": "You Came Back",
+    "sub": "The source doesn't go anywhere. Neither do you.",
+    "cta_primary": "Shop The Collection",
+    "cta_secondary": "What's New"
+  },
+  "story": [
+    "Discipline is showing up again.",
+    "Even when you didn't have to.",
+    "That's the origin."
+  ],
+  "philosophy": {
+    "headline": "Still Here",
+    "body": "Returning is not weakness. It's the whole point. Primal Source exists for the men who keep coming back — to themselves, to their work, to what matters."
+  },
+  "email": {
+    "headline": "Stay In The Circle",
+    "sub": "Next drop. First to know.",
+    "cta": "Stay In"
+  }
+}

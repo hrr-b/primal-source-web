@@ -1,0 +1,22 @@
+{
+  "hero": {
+    "headline": "Rare Sourced. Limited Run.",
+    "sub": "This drop won't wait. Neither will you.",
+    "cta_primary": "Shop Now — Limited Stock",
+    "cta_secondary": "View Collection"
+  },
+  "story": [
+    "Not mass produced.",
+    "Chosen with intention.",
+    "Once it's gone, it's gone."
+  ],
+  "philosophy": {
+    "headline": "Why It's Rare",
+    "body": "We don't restock. Every piece is sourced intentionally, released once, and made for the men who move when it matters. If you're here, you already know."
+  },
+  "email": {
+    "headline": "Get Early Access",
+    "sub": "Circle members get 24h head start on every drop.",
+    "cta": "Get Early Access"
+  }
+}
