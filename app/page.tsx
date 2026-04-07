@@ -6,12 +6,10 @@ import GrainOverlay from '@/components/GrainOverlay'
 import ProductCard from '@/components/ProductCard'
 import AnimatedText from '@/components/AnimatedText'
 import { getProducts } from '@/lib/shopify'
+import homepageContent from '@/content/homepage.json'
+import emailContent from '@/content/email.json'
 
-const storyLines = [
-  'Built for men who refuse to be ordinary.',
-  'Every piece sourced with intention.',
-  'This is not fashion. This is identity.',
-]
+const storyLines = homepageContent.story
 
 export default function HomePage() {
   const storyRef = useRef<HTMLDivElement>(null)
@@ -88,7 +86,7 @@ export default function HomePage() {
           <h1
             className="font-['Bebas_Neue'] text-[clamp(4rem,12vw,10rem)] leading-none tracking-wider text-[#f5f0e8] mb-8"
           >
-            RETURN TO<br />YOUR ORIGIN
+            {homepageContent.hero.headline.split(' TO').map((part, i) => i === 0 ? <span key={i}>{part} TO<br /></span> : <span key={i}>{part}</span>)}
           </h1>
 
           <motion.p
@@ -97,7 +95,7 @@ export default function HomePage() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 1 }}
           >
-            Apparel for those who build themselves from the ground up.
+            {homepageContent.hero.sub}
           </motion.p>
 
           <motion.div
@@ -196,10 +194,10 @@ export default function HomePage() {
           <AnimatedText>
             <p className="text-[#8B6914] text-xs tracking-[0.4em] uppercase mb-4">Community</p>
             <h2 className="font-['Bebas_Neue'] text-4xl tracking-wider text-[#f5f0e8] mb-4">
-              JOIN THE PRIMAL CIRCLE
+              {emailContent.capture.headline}
             </h2>
             <p className="text-white/40 text-sm tracking-wide mb-10">
-              Early access. Drops. Stories from the source.
+              {emailContent.capture.sub}
             </p>
 
             {submitted ? (
