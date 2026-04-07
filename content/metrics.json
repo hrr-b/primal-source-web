@@ -1,0 +1,18 @@
+{
+  "last_updated": "2026-04-07",
+  "versions": [
+    {
+      "version": "v1",
+      "deployed": "2026-04-07",
+      "file": "history/homepage_v1_20260407.json",
+      "metrics": {
+        "ctr": null,
+        "conversion_rate": null,
+        "engagement_time": null
+      },
+      "status": "active"
+    }
+  ],
+  "winning_version": null,
+  "notes": "Baseline — founder story integrated, identity copy live"
+}

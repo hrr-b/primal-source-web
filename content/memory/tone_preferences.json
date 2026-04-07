@@ -1,0 +1,16 @@
+{
+  "last_updated": "2026-04-07",
+  "approved_tone": {
+    "adjectives": ["calm", "grounded", "minimal", "intentional", "quiet", "certain", "honest"],
+    "avoid": ["hype", "loud", "trendy", "playful", "corporate", "generic", "excited"],
+    "sentence_style": "Short. Direct. Purposeful. Never rushed.",
+    "voice": "A man who has been through something and came out clearer — not louder."
+  },
+  "brand_words": [
+    "origin", "primal", "source", "return", "grounded", "discipline",
+    "presence", "intentional", "rare", "internal", "rebuilt", "quiet"
+  ],
+  "forbidden_words": [
+    "game-changer", "elevate", "hustle", "grind culture", "boss", "luxury lifestyle", "exclusive"
+  ]
+}

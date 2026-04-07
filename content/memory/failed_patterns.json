@@ -1,0 +1,20 @@
+{
+  "last_updated": "2026-04-07",
+  "patterns": [
+    {
+      "type": "generic_copy",
+      "example": "Premium quality for the modern man.",
+      "reason": "Too generic. Sounds like every other brand. No identity."
+    },
+    {
+      "type": "hype_language",
+      "example": "Elevate your style game!",
+      "reason": "Off brand. Primal Source is calm authority, not hype."
+    },
+    {
+      "type": "feature_first",
+      "example": "100% cotton. Machine washable. Available in 5 colors.",
+      "reason": "Features without identity. Misses the brand entirely."
+    }
+  ]
+}

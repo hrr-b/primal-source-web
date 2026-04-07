@@ -1,0 +1,23 @@
+{
+  "last_updated": "2026-04-07",
+  "patterns": [
+    {
+      "type": "identity_hook",
+      "pattern": "Built for men who [struggle/action], even when [difficulty].",
+      "example": "Built for men who keep showing up, even when nothing feels certain.",
+      "notes": "Founder-validated. Speaks to invisible struggle."
+    },
+    {
+      "type": "philosophy",
+      "pattern": "Return to [internal concept] — not [external thing], but [deeper meaning].",
+      "example": "Return to yourself — not nature outside, but your internal nature.",
+      "notes": "Core brand differentiator. High emotional resonance."
+    },
+    {
+      "type": "close",
+      "pattern": "Part of a rare sourced release. [Scarcity signal]. [Intentionality signal].",
+      "example": "Part of a rare sourced release. Not mass produced. Chosen with intention.",
+      "notes": "Creates urgency without hype. On brand."
+    }
+  ]
+}
