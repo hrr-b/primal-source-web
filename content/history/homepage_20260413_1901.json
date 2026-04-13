@@ -1,0 +1,22 @@
+{
+  "hero": {
+    "headline": "Return To Your Origin",
+    "sub": "For those returning to themselves — even when no one else can see it.",
+    "cta_primary": "Shop Now",
+    "cta_secondary": "Our Philosophy"
+  },
+  "story": [
+    "Not nature outside — your internal nature.",
+    "Your baseline. Who you are without noise or illusion.",
+    "This is not fashion. This is a return."
+  ],
+  "philosophy": {
+    "headline": "The Origin",
+    "body": "There wasn't one clean moment. It was a period where everything broke at once. Internally I was dealing with something constant and invisible — and I didn't stop. I focused on what I could control. Over time, slowly, things started to return. Not perfectly, but enough. That's where Primal Source comes from. It's for those doing the same, even if no one else can see it."
+  },
+  "email": {
+    "headline": "Join The Primal Circle",
+    "sub": "First access to drops. No noise.",
+    "cta": "Enter"
+  }
+}

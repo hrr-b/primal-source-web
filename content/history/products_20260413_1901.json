@@ -1,0 +1,43 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "slug": "origin-tee",
+      "name": "Origin Tee",
+      "price": 65,
+      "identity": "Built for men who keep showing up, even when nothing feels certain.",
+      "statement": "A premium heavyweight tee made with structured cotton for durability and everyday wear.",
+      "meaning": "This piece represents discipline through uncertainty — staying grounded when everything feels off balance.",
+      "feel": "Feels solid, minimal, and dependable. Designed for presence, not attention.",
+      "close": "Part of a rare sourced release. Not mass produced. Chosen with intention.",
+      "description": "Built for men who keep showing up, even when nothing feels certain. A premium heavyweight tee made with structured cotton for durability and everyday wear. This piece represents discipline through uncertainty — staying grounded when everything feels off balance. Feels solid, minimal, and dependable. Designed for presence, not attention. Part of a rare sourced release. Not mass produced. Chosen with intention.",
+      "benefits": ["Premium Cotton", "Relaxed Fit", "Minimal Branding"]
+    },
+    {
+      "id": "2",
+      "slug": "primal-hoodie",
+      "name": "Primal Hoodie",
+      "price": 120,
+      "identity": "Built for men rebuilding strength — quietly and intentionally.",
+      "statement": "A heavyweight fleece hoodie made for lasting comfort and quiet confidence.",
+      "meaning": "This piece represents the long work. The effort no one sees. The decision to keep going when it would be easier to stop.",
+      "feel": "Feels grounded, warm, and unhurried. Like the version of yourself that doesn't need to explain.",
+      "close": "Part of a rare sourced release. Limited units. No restocks.",
+      "description": "Built for men rebuilding strength — quietly and intentionally. A heavyweight fleece hoodie made for lasting comfort and quiet confidence. This piece represents the long work. The effort no one sees. The decision to keep going when it would be easier to stop. Feels grounded, warm, and unhurried. Like the version of yourself that doesn't need to explain. Part of a rare sourced release. Limited units. No restocks.",
+      "benefits": ["Heavyweight Fleece", "Oversized Fit", "Earth Tone Palette"]
+    },
+    {
+      "id": "3",
+      "slug": "source-cap",
+      "name": "Source Cap",
+      "price": 45,
+      "identity": "For men who value presence over noise.",
+      "statement": "A structured 6-panel cap made with clean lines and minimal detail.",
+      "meaning": "This piece represents a return to simplicity. Clarity over clutter. Identity without performance.",
+      "feel": "Feels structured and clean. Sits right. No adjustment needed.",
+      "close": "Part of a rare sourced release. Chosen with purpose.",
+      "description": "For men who value presence over noise. A structured 6-panel cap made with clean lines and minimal detail. This piece represents a return to simplicity. Clarity over clutter. Identity without performance. Feels structured and clean. Sits right. No adjustment needed. Part of a rare sourced release. Chosen with purpose.",
+      "benefits": ["6-Panel Structure", "Embroidered Logo", "Adjustable Fit"]
+    }
+  ]
+}
